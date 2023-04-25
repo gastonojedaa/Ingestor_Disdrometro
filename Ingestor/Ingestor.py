@@ -55,7 +55,7 @@ for filename in os.listdir(raw_data_dir):
             parsed_raw = ';'.join([raw[i:i+3] for i in range(0, len(raw), 3)])
 
             # Se arma el string final
-            resultado = f"{parsed_raw}\n{I};{P};{Z};{St};{N};{Tsensor};{Tsgr};{Tshl};{Hc};{timestamp};\n"
+            resultado = f"{parsed_raw};\n{I};{P};{Z};{St};{N};{Tsensor};{Tsgr};{Tshl};{Hc};{timestamp};\n"
            
             # Se escribe el string final en el archivo
             with open(converted_data_dir + "/" + filename, 'a') as file:
