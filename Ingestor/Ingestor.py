@@ -2,7 +2,7 @@
 
 #Tutorial
 # Para convertir archivos se debe borrar todo el contenido de la carpeta raw_data y colocar alli los archivos a convertir
-# Luego se debe ejecutar el script y se creará automaticamente entro de la carpeta converted_data una carpeta llamada data_FechaDeHoy con los archivos convertidos 
+# Luego se debe ejecutar el script y se creará automaticamente dentro de la carpeta converted_data una carpeta llamada data_FechaDeHoy con los archivos convertidos 
 # Para ejecutar el script se debe ejecutar alguno de los siguientes comandos en la terminal: 
 # python Ingestor.py
 # python3 Ingestor.py
