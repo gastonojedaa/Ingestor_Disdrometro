@@ -1,8 +1,9 @@
 #Ingestor para los datos de los disdrometros
 
 #Tutorial
-# Para convertir archivos se debe borrar todo el contenido de la carpeta raw_data y colocar alli los archivos a convertir
-# Luego se debe ejecutar el script y se creará automaticamente dentro de la carpeta converted_data una carpeta llamada data_FechaDeHoy con los archivos convertidos 
+# Se deben colocar los archivos que se quieren convertir en la carpeta raw_data y ejecutar el script
+# Luego se debe ejecutar el script y se crearán automaticamente 2 carpetas. La primera dentro de la carpeta converted_data la cual será una carpeta llamada data_FechaDeHoy con los archivos 
+# convertidos. La segunda dentro de la carpeta backup_data la cual será una carpeta llamada data_FechaDeHoy con los archivos originales. 
 # Para ejecutar el script se debe ejecutar alguno de los siguientes comandos en la terminal: 
 # python Ingestor.py
 # python3 Ingestor.py
@@ -10,21 +11,23 @@
 
 import os
 import datetime
-import time
 import shutil
 
 base_dir = "./"
 data_dir = base_dir + "converted_data/"
 raw_data_dir = base_dir + "raw_data/"
+backup_dir = base_dir + "backup_data/"
 
-#se crea la carpeta donde se guardaran los archivos convertidos en formato dd-mm-aaaa
+#se crea la carpeta donde se guardaran los archivos convertidos en formato dd-mm-aaaa y una carpeta para los archivos originales
 today = datetime.date.today()
 today = today.strftime("%d-%m-%Y")
 converted_data_dir = data_dir + "data_" + today
+backup_data_dir = backup_dir + "data_" + today
 #si no existe la carpeta se crea
 if not os.path.exists(converted_data_dir):
     os.makedirs(converted_data_dir)
-#se abre el archivo converted_data_dir y se escribe en él los datos convertidos
+if not os.path.exists(backup_data_dir):
+    os.makedirs(backup_data_dir)
 
 #se abren los archivos de raw_data_dir uno a uno
 for filename in os.listdir(raw_data_dir):
@@ -58,9 +61,15 @@ for filename in os.listdir(raw_data_dir):
             resultado = f"{parsed_raw};\n{I};{P};{Z};{St};{N};{Tsensor};{Tsgr};{Tshl};{Hc};{timestamp};\n"
            
             # Se escribe el string final en el archivo
-            with open(converted_data_dir + "/" + filename, 'a') as file:
-                file.write(resultado)
-                file.close()
+            with open(converted_data_dir + "/" + filename, 'a') as f:
+                f.write(resultado)
+                f.close()
+
+    #se mueve el archivo a la carpeta backup
+    shutil.move(raw_data_dir + filename, backup_data_dir + "/" + filename)
+    
+        
+   
 
 
 
