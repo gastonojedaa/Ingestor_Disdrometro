@@ -61,12 +61,15 @@ for filename in os.listdir(raw_data_dir):
             resultado = f"{parsed_raw};\n{I};{P};{Z};{St};{N};{Tsensor};{Tsgr};{Tshl};{Hc};{timestamp};\n"
            
             # Se escribe el string final en el archivo
-            with open(converted_data_dir + "/" + filename, 'a') as f:
+            with open(converted_data_dir + "/Data-" + today + ".txt", 'a') as f:
                 f.write(resultado)
-                f.close()
+                f.close()   
+    
 
-    #se mueve el archivo a la carpeta backup
-    shutil.move(raw_data_dir + filename, backup_data_dir + "/" + filename)
+    #se mueve el archivo a la carpeta backup excepto el archivo .gitkeep
+    if filename != ".gitkeep":
+        shutil.move(raw_data_dir + filename, backup_data_dir + "/" + filename)
+
     
         
    
