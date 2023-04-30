@@ -1,14 +1,4 @@
 #Ingestor para los datos de los disdrometros
-
-#Tutorial
-# Se deben colocar los archivos que se quieren convertir en la carpeta raw_data y ejecutar el script
-# Luego se debe ejecutar el script y se crearán automaticamente 2 carpetas. La primera dentro de la carpeta converted_data la cual será una carpeta llamada data_FechaDeHoy con los archivos 
-# convertidos. La segunda dentro de la carpeta backup_data la cual será una carpeta llamada data_FechaDeHoy con los archivos originales. 
-# Para ejecutar el script se debe ejecutar alguno de los siguientes comandos en la terminal: 
-# python Ingestor.py
-# python3 Ingestor.py
-# py Ingestor.py
-
 import os
 import datetime
 import shutil
@@ -32,9 +22,7 @@ if not os.path.exists(backup_data_dir):
 #se abren los archivos de raw_data_dir uno a uno
 for filename in os.listdir(raw_data_dir):
     #se lee el archivo
-    with open(raw_data_dir + filename, 'r') as file:
-        #se imprime el contenido del archivo
-        #print(file.read())
+    with open(raw_data_dir + filename, 'r') as file:        
         #lee linea a linea
         for line in file:
         # Dividir la línea en elementos utilizando ":" como delimitador
