@@ -61,7 +61,7 @@ for filename in os.listdir(raw_data_dir):
                 last_timestamp = int(last_timestamp)
                 
                 if (current_timestamp - last_timestamp) != n:
-                    print("Error: No ha transcurrido %d segundos entre los timestamps %d y %d en el archivo %s" % (n,last_timestamp, current_timestamp, filename))
+                    #print("Error: No ha transcurrido %d segundos entre los timestamps %d y %d en el archivo %s" % (n,last_timestamp, current_timestamp, filename))
                     # Se escribe el error en el log general
                     with open(log_general, 'a') as f:  
                         f.write("%s | No ha transcurrido %d segundos entre los timestamps %d y %d en el archivo %s\n" % (date, n,last_timestamp, current_timestamp, filename))
@@ -85,7 +85,7 @@ for filename in os.listdir(raw_data_dir):
                 last_P = float(last_P)
                 P = float(P)
                 if P < last_P:
-                    print("Error: La precipitacion acumulada disminuyó en el archivo %s con el timestamp %s" % (filename,timestamp))
+                    #print("Error: La precipitacion acumulada disminuyó en el archivo %s con el timestamp %s" % (filename,timestamp))
                     # Se escribe el error en el log general
                     with open(log_general, 'a') as f:
                         f.write("%s | La precipitacion acumulada disminuyó en el archivo %s con el timestamp %s\n" % (date,filename,timestamp))
